@@ -23,7 +23,7 @@ export default function ResultsPage() {
     async function poll() {
       attempts += 1;
       try {
-        const res = await fetch(`/api/payments/unlock/${analysisId}`);
+        const res = await fetch(`https://matchmaker-ai-production.up.railway.app/api/payments/unlock/${analysisId}`);
         const full = await res.json();
         if (cancelled) return;
         if (res.ok && full.paid) {
@@ -53,7 +53,7 @@ export default function ResultsPage() {
     setCheckingOut(true);
     setError("");
     try {
-      const res = await fetch("/api/payments/create-checkout-session", {
+      const res = await fetch("https://matchmaker-ai-production.up.railway.app/api/payments/create-checkout-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ analysisId }),
